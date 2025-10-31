@@ -1,5 +1,11 @@
 # Windows-Script
-Script per ottimizzare al meglio windows
+Before running the script, make sure you’ve executed:
+Before running the script, make sure you’ve executed:  
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
+```
+
 
 🧰 <b> Restore Windows 10 Right Click Button </b> 🧰
 
