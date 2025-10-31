@@ -1,4 +1,4 @@
-# Windows-Script
+# Windows-PowershellScript
 Before running the script, make sure you’ve executed:
 Before running the script, make sure you’ve executed:  
 
