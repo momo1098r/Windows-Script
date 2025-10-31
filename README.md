@@ -5,9 +5,7 @@ Before running the script, make sure you’ve executed:
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
 ```
-
-
-🧰 <b> Restore Windows 10 Right Click Button </b> 🧰
+<h3><b> 🧰 Restore Windows 10 Right Click Button 🧰 </b></h3>
 
 This script restores the classic Windows 10 context menu on Windows 11, replacing the new compact version introduced by Microsoft.
 With just one click, it brings back the full, familiar right-click menu, giving you quick access to useful options like Properties, Open file location, Send to, and more.
