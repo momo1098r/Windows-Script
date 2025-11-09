@@ -9,7 +9,7 @@ Write-Host "Apro la pagina ufficiale di download di Windows 11 25H2..." -Foregro
 Start-Process $MsDownloadPage
 
 # Attendi che l’utente scarichi manualmente la ISO
-Write-Host "`n⚠️ Dopo aver scaricato la ISO in formato .iso nella cartella Download, premi INVIO per continuare." -ForegroundColor Yellow
+Write-Host "Dopo aver scaricato la ISO in formato .iso nella cartella Download, premi INVIO per continuare." -ForegroundColor Yellow
 Pause
 
 # Controlla se la ISO esiste
@@ -22,7 +22,7 @@ if (-not (Test-Path $IsoFile)) {
 }
 
 # Monta la ISO
-Write-Host "🔄 Montaggio dell’immagine ISO..."
+Write-Host "Montaggio dell’immagine ISO..."
 $mountResult = Mount-DiskImage -ImagePath $IsoFile -PassThru
 $driveLetter = ($mountResult | Get-Volume).DriveLetter
 
@@ -46,4 +46,5 @@ $Command = "cd `"$SourcesPath`"; cmd /k setupprep.exe/product server"
 
 Start-Process powershell -ArgumentList "-NoExit", "-Command", $Command -Verb RunAs
 
-Write-Host "`n✅ PowerShell avviato come amministratore nella cartella 'sources'. Puoi vedere il comando in esecuzione." -ForegroundColor Cyan
+Write-Host "PowerShell avviato come amministratore nella cartella 'sources'. Puoi vedere il comando in esecuzione." -ForegroundColor Cyan
+
