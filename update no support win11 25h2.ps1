@@ -1,51 +1,52 @@
-# Percorso cartella Download
+# Path to Downloads folder
 $DownloadPath = "$env:USERPROFILE\Downloads"
 $IsoFile = "$DownloadPath\Win11_25H2_Italian_x64.iso"
 
-# URL ufficiale della pagina di download di Windows 11
+# Official Microsoft Windows 11 download page
 $MsDownloadPage = "https://www.microsoft.com/software-download/windows11"
 
-Write-Host "Apro la pagina ufficiale di download di Windows 11 25H2..." -ForegroundColor Cyan
+Write-Host "Opening Windows 11 download page..." -ForegroundColor Cyan
 Start-Process $MsDownloadPage
 
-# Attendi che l’utente scarichi manualmente la ISO
-Write-Host "Dopo aver scaricato la ISO in formato .iso nella cartella Download, premi INVIO per continuare." -ForegroundColor Yellow
+# Wait for the user to manually download the ISO
+Write-Host "After downloading the ISO to your Downloads folder, press ENTER to CONTINUE." -ForegroundColor Yellow
 Pause
 
-# Controlla se la ISO esiste
+# Check if the ISO exists
 if (-not (Test-Path $IsoFile)) {
-    $IsoFile = Read-Host "Inserisci il percorso completo della ISO se non è in Downloads"
+    $IsoFile = Read-Host "Enter the ISO file path if it's not in the Downloads folder"
     if (-not (Test-Path $IsoFile)) {
-        Write-Host "ISO non trovata. Interrompo lo script." -ForegroundColor Red
+        Write-Host "ISO file not found. Stopping the script." -ForegroundColor Red
         exit
     }
 }
 
-# Monta la ISO
-Write-Host "Montaggio dell’immagine ISO..."
+# Mount the ISO image
+Write-Host "Mounting ISO image..."
 $mountResult = Mount-DiskImage -ImagePath $IsoFile -PassThru
 $driveLetter = ($mountResult | Get-Volume).DriveLetter
 
 if (-not $driveLetter) {
-    Write-Host "Impossibile determinare la lettera dell’unità ISO." -ForegroundColor Red
+    Write-Host "Unable to determine the ISO drive letter." -ForegroundColor Red
     exit
 }
 
-# Percorso cartella sources
+# Path to the sources folder
 $SourcesPath = "$driveLetter`:\sources"
 
 if (-not (Test-Path $SourcesPath)) {
-    Write-Host "Cartella 'sources' non trovata nell'immagine ISO." -ForegroundColor Red
+    Write-Host "'sources' folder not found in the ISO image." -ForegroundColor Red
     exit
 }
 
-# Apri PowerShell come amministratore nella cartella sources e lancia cmd con setupprep
-Write-Host "Apertura di PowerShell come amministratore nella cartella sources..." -ForegroundColor Green
+# Open PowerShell as administrator in the sources folder and run cmd with setupprep
+Write-Host "Opening PowerShell as administrator in the 'sources' folder..." -ForegroundColor Green
 
-$Command = "cd `"$SourcesPath`"; cmd /k setupprep.exe/product server"
+$Command = "cd `"$SourcesPath`"; cmd /k setupprep.exe /product server"
 
 Start-Process powershell -ArgumentList "-NoExit", "-Command", $Command -Verb RunAs
 
-Write-Host "PowerShell avviato come amministratore nella cartella 'sources'. Puoi vedere il comando in esecuzione." -ForegroundColor Cyan
+Write-Host "PowerShell started as administrator in the 'sources' folder. You can see the command running." -ForegroundColor Cyan
+
 
 
