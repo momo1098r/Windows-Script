@@ -1,6 +1,6 @@
 # Path to Downloads folder
 $DownloadPath = "$env:USERPROFILE\Downloads"
-$IsoFile = "$DownloadPath\Win11_25H2_Italian_x64.iso"
+$IsoFile = "$DownloadPath\Win11_25H2_Italian_x64_v2.iso"
 
 # Official Microsoft Windows 11 download page
 $MsDownloadPage = "https://www.microsoft.com/software-download/windows11"
